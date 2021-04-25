@@ -3,6 +3,7 @@ package com.example.alaa.view;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -41,7 +42,8 @@ public class A_Fragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mMainViewModel= new ViewModelProvider(this).get(MainViewModel.class);
+        mMainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+
     }
 
     @Override
@@ -49,6 +51,9 @@ public class A_Fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_a, container, false);
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            mBinding.fab.setImageResource(R.drawable.ic_sun);
+        }
 
         setListener();
 
@@ -56,6 +61,25 @@ public class A_Fragment extends Fragment {
     }
 
     private void setListener() {
+        mBinding.fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+                    mMainViewModel.setNightMode(false);
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    mBinding.fab.setImageResource(R.drawable.ic_sun);
+                } else {
+                    mMainViewModel.setNightMode(true);
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    mBinding.fab.setImageResource(R.drawable.ic_moon);
+                }
+
+
+                getActivity().recreate();
+
+
+            }
+        });
         mBinding.btnOk.setOnClickListener(v -> {
             ButtonSheetFragment buttonSheetFragment = ButtonSheetFragment.newInstance();
             buttonSheetFragment.show(getActivity().getSupportFragmentManager(), ButtonSheetFragment.TAG);

@@ -16,6 +16,7 @@ public class Repository {
         return sRepository;
     }
     private Repository(){
+        mNightMode.setValue(false);
 
     }
 

@@ -3,7 +3,6 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="?attr/backgroundColor"
     xmlns:tools="http://schemas.android.com/tools"
     app:behavior_hideable="true"
     app:behavior_peekHeight="220dp"
@@ -18,9 +17,11 @@
     tools:context=".view.ButtonSheetFragment">
 
 
+
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
+        android:background="?attr/colorPrimary"
         android:layout_height="wrap_content"
         android:text="@string/close"
         android:textColor="?attr/colorOnPrimary"
@@ -33,6 +34,7 @@
         android:textColor="?attr/textColor"
         android:id="@+id/textView"
         android:layout_width="wrap_content"
+        android:layout_marginBottom="@dimen/keyline_5"
         android:textStyle="bold"
         android:layout_height="wrap_content"
         style="?textAppearanceHeadline6"
@@ -54,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.75" />
+        app:layout_constraintGuide_percent="0.85" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
